@@ -14,7 +14,7 @@ VUE
 * npm install --save-dev copy-webpack-plugin (en webpackplugin som används vid build)
 * npm install --save-dev html-webpack-plugin (används av webpack för att generera index.html där den bundlade JS injiceras)
 * npm install --save vue (själva biblioteket för Vue)
-* npm install --save vue-router (lägger till routerfunktionalitet till Vue)
+* npm install --save vue-router (inget måste, men lägger till routerfunktionalitet till Vue)
 * package.json: Ändra mainscriptet till "main": "main.js" (Electrons jobb är kort och gott att köra en JavaScript-fil, indikerad av denna inställning. I scriptet anropas kommandon för att skapa fönster där själva appen sedan ligger.)
 * package.json: lägg till script "electron": "electron ."
 * package.json: lägg till script "dev": "concurrently \"webpack --watch\" \"electron .\"". Detta ska användas vid utveckling och bygger projektet när filer ändras (watch). electron-reload ser sedan till att Electron laddas om som en konsekvens av uppdateringen.
