@@ -4,15 +4,16 @@ VUE
 * Skapa projektmapp
 * Skapa package.json för appen
     npm init -y
+[Dev dependencies]
 * npm install --save-dev electron (Själva Electron. Precis som med Node är det en runtime som kör JS, fast denna bakar samman Node med en Chromium browser. Detta är tidigare electron-prebuilt, en modul som hämtar en förbyggd runtime smidigt.)
 * npm install --save-dev electron-reload (laddar om Electron när en ändring sker i dist. Själva dist uppdateras när källfilerna ändras via ng build)
 * npm install --save-dev webpack (bundlar ihop appen, inklusive kompilering av vue-komponenter)
-* npm install --save-dev concurrently (modulen som används i startscriptet)
 * npm install --save-dev vue-loader (tillåter webpack att ladda vue-filer)
 * npm install --save-dev vue-template-compiler (Peer-dependency till vue-loader. Dessa måste installeras manuellt. Ska ha något att göra med att pinna versioner, vad nu det innebär. Se mer på https://github.com/vuejs/vue-loader/issues/560)
 * npm install --save-dev css-loader
 * npm install --save-dev copy-webpack-plugin (en webpackplugin som används vid build)
 * npm install --save-dev html-webpack-plugin (används av webpack för att generera index.html där den bundlade JS injiceras)
+[Client dependencies]
 * npm install --save vue (själva biblioteket för Vue)
 * npm install --save vue-router (inget måste, men lägger till routerfunktionalitet till Vue)
 * package.json: Ändra mainscriptet till "main": "main.js" (Electrons jobb är kort och gott att köra en JavaScript-fil, indikerad av denna inställning. I scriptet anropas kommandon för att skapa fönster där själva appen sedan ligger.)
@@ -28,7 +29,7 @@ så Electron laddas om vid förändringar i dist.
 * Skapa app/index.html (används av webpack)
 * Skapa app/main.js (används som entry point av webpack)
 
-Vid utveckling kör `npm run dev` som drar igång webpack i watchläge (kompilerar när källkoden ändras) och startar Electron. När dist ändras vid omkompilering kommer Electron laddas om tack vare electron-reload
+Vid utveckling kör `npm run dev` som drar igång webpack i watchläge (kompilerar när källkoden ändras). När dist ändras vid omkompilering kommer Electron laddas om tack vare electron-reload
 Om jag bara ska köra mitt program räcker npm run electron
 Man kan senare installera electron-packager som är ett program som kan paketera en app med dess dependencies. Det är en binary modul som körs på appen precis som Electron. Förslagsvis kan man lägga kommandot som ett script och sen bara köra npm package eller liknande.
 Man kan även installera electron-builder som tar paket producerade av electron-packager och skapar automatiserade installers.

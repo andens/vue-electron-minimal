@@ -5,14 +5,13 @@
   "main": "main.js",
   "scripts": {
     "electron": "electron .",
-    "dev": "concurrently \"webpack --watch --colors\" \"electron .\"",
+    "dev": "webpack --watch --colors",
     "build": "webpack --colors"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "electron": "^1.6.11",
