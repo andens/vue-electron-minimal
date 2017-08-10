@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "electron": "electron .",
-    "dev": "webpack --watch --colors",
-    "build": "webpack --colors"
+    "dev": "webpack --watch --progress --colors",
+    "build": "webpack --progress --colors"
   },
   "keywords": [],
   "author": "",

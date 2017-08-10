@@ -18,8 +18,8 @@ VUE
 * npm install --save vue-router (inget måste, men lägger till routerfunktionalitet till Vue)
 * package.json: Ändra mainscriptet till "main": "main.js" (Electrons jobb är kort och gott att köra en JavaScript-fil, indikerad av denna inställning. I scriptet anropas kommandon för att skapa fönster där själva appen sedan ligger.)
 * package.json: lägg till script "electron": "electron ."
-* package.json: lägg till script "dev": "webpack --watch --colors". Detta ska användas vid utveckling och bygger projektet när filer ändras (watch). electron-reload ser sedan till att Electron laddas om som en konsekvens av uppdateringen.
-* package.json: lägg till script "build": "webpack --colors". Som ovan, fast bygger en gång utan watch-läge.
+* package.json: lägg till script "dev": "webpack --watch --progress --colors". Detta ska användas vid utveckling och bygger projektet när filer ändras (watch). electron-reload ser sedan till att Electron laddas om som en konsekvens av uppdateringen.
+* package.json: lägg till script "build": "webpack --progress --colors". Som ovan, fast bygger en gång utan watch-läge.
 * Skapa startscriptet i roten av projektet. Fönstret ska öppna index.html i dist (webpack genererar dist och dess innehåll). I början av filen (efter man laddat electronmodulen), lägg till
     const path = require('path');
     require('electron-reload')(path.join(__dirname, 'dist'));
@@ -34,3 +34,16 @@ Vid utveckling kör `npm run dev` som drar igång webpack i watchläge (kompiler
 Om jag bara ska köra mitt program räcker npm run electron
 Man kan senare installera electron-packager som är ett program som kan paketera en app med dess dependencies. Det är en binary modul som körs på appen precis som Electron. Förslagsvis kan man lägga kommandot som ett script och sen bara köra npm package eller liknande.
 Man kan även installera electron-builder som tar paket producerade av electron-packager och skapar automatiserade installers.
+
+----------------------------------------------------
+
+* För att kunna använda require med nodemoduler när man bundlar med webpack, lägg till target: "electron" i webpack config.
+* Installera någon native modul, exempelvis sqlite3: npm install --save sqlite3
+* npm install --save-dev electron-rebuild (modul som hämtar Electrons version och bygger native moduler mot Electrons headers istället för den version av Node som är installerat på systemet)
+* package.json: script "rebuild": "electron-rebuild -f -w sqlite3" (bygger sqlite3, -f bygger om även om det annars inte skulle gjorts, -w är vilken modul)
+* Kör `npm run rebuild` för att bygga sqlite3
+* Om man försöker bygga projektet nu kommer webpack försöka bundla även sqlite3 och det går inte så bra med en native modul. För att ignorera sqlite3 från att bundlas lägger vi till (notera commonjs)
+    externals: {
+        sqlite3: "commonjs sqlite3"
+    }
+i module.exports i webpack.config.js: http://jlongster.com/Backend-Apps-with-Webpack--Part-I
