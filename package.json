@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "electron": "electron .",
-    "dev": "concurrently \"webpack --watch\" \"electron .\"",
-    "build": "webpack"
+    "dev": "concurrently \"webpack --watch --colors\" \"electron .\"",
+    "build": "webpack --colors"
   },
   "keywords": [],
   "author": "",
